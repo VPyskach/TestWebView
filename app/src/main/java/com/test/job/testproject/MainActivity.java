@@ -1,8 +1,11 @@
 package com.test.job.testproject;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.CookieManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,10 +17,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        webView = (WebView) findViewById(R.id.webView);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        //webView = (WebView) findViewById(R.id.webView);
+        webView = new WebView(this);
+        setContentView(webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebClient());
-        webView.loadUrl("http://facebook.com");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.flush();
+        }
+        webView.loadUrl("http://github.com");
     }
 
     @Override
