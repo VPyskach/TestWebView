@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebClient());
-        webView.loadUrl("http://github.com");
+        //webView.loadUrl("http://github.com");
         AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
                     @Override
                     public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
